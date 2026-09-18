@@ -74,7 +74,7 @@ Item* Remove(List* list, int item_index) {
 }
 
 void Insert(List* list, int item_index, Item* item) {
-  if (list == NULL || item == NULL) {
+  if (list == NULL || item == NULL || item_index < 0) {
     return;
   }
 
