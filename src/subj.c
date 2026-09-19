@@ -277,42 +277,34 @@ void Destroy(struct Base* p) {
 }
 
 struct Base* Create(ItemType t) {
+  struct Base* p = NULL;
+
   switch (t) {
-    case IT_INTERNET: {
-      InternetAddress* a = calloc(1, sizeof(InternetAddress));
-      if (a != NULL) {
-        a->type = t;
-      }
-      return (struct Base*)a;
-    }
+    case IT_INTERNET:
+      p = (struct Base*)calloc(1, sizeof(InternetAddress));
+      break;
 
-    case IT_LOCAL_NETWORK: {
-      LocalNetworkAddress* a = calloc(1, sizeof(LocalNetworkAddress));
-      if (a != NULL) {
-        a->type = t;
-      }
-      return (struct Base*)a;
-    }
+    case IT_LOCAL_NETWORK:
+      p = (struct Base*)calloc(1, sizeof(LocalNetworkAddress));
+      break;
 
-    case IT_LOCAL_RESOURCE: {
-      LocalResourceAddress* a = calloc(1, sizeof(LocalResourceAddress));
-      if (a != NULL) {
-        a->type = t;
-      }
-      return (struct Base*)a;
-    }
+    case IT_LOCAL_RESOURCE:
+      p = (struct Base*)calloc(1, sizeof(LocalResourceAddress));
+      break;
 
-    case IT_EMAIL: {
-      EmailAddress* a = calloc(1, sizeof(EmailAddress));
-      if (a != NULL) {
-        a->type = t;
-      }
-      return (struct Base*)a;
-    }
+    case IT_EMAIL:
+      p = (struct Base*)calloc(1, sizeof(EmailAddress));
+      break;
 
     default:
       return NULL;
   }
+
+  if (p != NULL) {
+    p->type = t;
+  }
+
+  return p;
 }
 
 static const char* get_node_name(const struct Base* p) {
@@ -332,28 +324,13 @@ static const char* get_node_name(const struct Base* p) {
 }
 
 static void swap_nodes(struct List* list, struct Item* a, struct Item* b) {
-  struct Item* pre = a->prev;
-  struct Item* post = b->next;
+  int ia = GetIndex(list, a);
 
-  a->next = post;
-  if (post != NULL) {
-    post->prev = a;
+  if (ia < 0 || GetIndex(list, b) != ia + 1) {
+    return;
   }
 
-  b->prev = pre;
-  if (pre != NULL) {
-    pre->next = b;
-  }
-
-  b->next = a;
-  a->prev = b;
-
-  if (list->head == a) {
-    list->head = b;
-  }
-  if (list->tail == b) {
-    list->tail = a;
-  }
+  Insert(list, ia, Remove(list, ia + 1));
 }
 
 void Sort(struct List* L) {
