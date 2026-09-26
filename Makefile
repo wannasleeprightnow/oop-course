@@ -1,20 +1,20 @@
 CC      = gcc
 CFLAGS  = -Wall -Wextra
 
-.PHONY: all lab2 lab2-run lab2-format clean
+.PHONY: all clean oop-run oop-format
 
-all: lab2
+all: oop
 
-lab2: lab2.out
+oop: main
 
-lab2.out: lab2/src/main.c lab2/src/list.c lab2/src/list.h
-	$(CC) $(CFLAGS) -o $@ lab2/src/main.c lab2/src/list.c
+main: src/main.c src/list.c src/list.h
+	$(CC) $(CFLAGS) -o $@ src/main.c src/list.c
 
-lab2-run: lab2.out
-	./lab2.out
+oop-run: main
+	./main
 
-lab2-format:
-	clang-format -i lab2/src/main.c lab2/src/list.h lab2/src/list.c
+oop-format:
+	clang-format -i src/main.c src/list.c src/list.h
 
 clean:
-	rm -f *.out
+	rm main
