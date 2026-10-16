@@ -1,0 +1,72 @@
+1
+1
+HTTPS
+zeta.example.test
+docs
+guide.html
+Документация проекта
+1
+2
+workstation-m
+shared\reports
+report.pdf
+Рабочие отчёты
+1
+3
+C
+Users\Student\Documents
+notes.txt
+Учебные заметки
+1
+4
+mail-z.example.test
+support
+Поддержка проекта
+1
+1
+FTP
+alpha.example.test
+releases
+archive.zip
+Архив проекта
+1
+2
+workstation-a
+shared\photos
+photo.jpg
+Общие фотографии
+1
+3
+D
+Backups\Monthly
+backup.zip
+Резервная копия проекта
+1
+4
+mail-a.example.test
+student
+Учебная почта
+1
+1
+HTTP
+middle.example.test
+news
+index.html
+Новости проекта
+1
+2
+workstation-z
+shared\manuals
+manual.pdf
+Общие инструкции
+1
+3
+E
+Media\Audio
+lecture.mp3
+Учебная лекция
+1
+4
+mail-m.example.test
+team
+Команда проекта
