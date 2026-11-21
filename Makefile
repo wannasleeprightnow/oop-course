@@ -1,20 +1,20 @@
-CC      = gcc
-CFLAGS  = -Wall -Wextra
+CXX     = g++
+CXXFLAGS = -std=c++11 -Wall -Wextra -pedantic
 
-.PHONY: all clean oop-run oop-format
+.PHONY: all clean oop oop-run oop-format
 
 all: oop
 
 oop: main
 
-main: src/main.c src/list.c src/list.h src/subj.h src/subj.c
-	$(CC) $(CFLAGS) -o $@ src/main.c src/list.c src/subj.c
+main: src/main.cpp src/list.cpp src/list.h
+	$(CXX) $(CXXFLAGS) -o $@ src/main.cpp src/list.cpp
 
 oop-run: main
 	./main
 
 oop-format:
-	clang-format -i src/main.c src/list.c src/list.h src/subj.c src/subj.h
+	clang-format -i src/main.cpp src/list.cpp src/list.h
 
 clean:
-	rm main
+	rm -f main
